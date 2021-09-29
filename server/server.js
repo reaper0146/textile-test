@@ -7,6 +7,19 @@ const app=express();
 app.use(express.json())
 app.use(cors())
 
+const { Gateway }  = require('lightstreams-js-sdk')
+const gateway = Gateway('https://gateway.sirius.lightstreams.io')
+
+async function init() {
+    //const account = "0xa981f8ca77d069d79b609ca0069b052db79e7e30"
+    //const file = fs.createReadStream(`/tmp/my_secret_file.txt`)
+    //const { meta, acl } = await gateway.storage.add(account, "password", file)
+    // Get user balance
+    const account = "0xa981f8ca77d069d79b609ca0069b052db79e7e30"
+    const { balance } = await gateway.wallet.balance(account)
+    console.log(balance)
+}
+
 const db = mysql.createConnection({
     user:"root",
     host:"localhost",
@@ -19,6 +32,7 @@ app.post('/register', (req,res)=> {
     const password = req.body.password
     console.log(username)
     console.log(password)
+    init()
 
     /*db.query("INSERT INTO users (username, password) VALUES (?,?)", [username, password], 
     (err,result) => {console.log(err);}
