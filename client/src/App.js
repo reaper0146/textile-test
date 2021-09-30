@@ -2,6 +2,21 @@ import logo from './logo.svg';
 import react, { useEffect, useState } from 'react'
 import './App.css';
 import Axios from 'axios'
+import {Client, PrivateKey, UserAuth} from '@textile/hub'
+
+
+async function setup () {
+  const user = await PrivateKey.fromRandom()
+
+  const client = await Client.withUserAuth(UserAuth)
+
+  return client
+}
+
+async function newToken () {
+  const token = await Client.getToken(PrivateKey)
+  return token
+}
 
 function App() {
   const [usernameReg, setUsernameReg] = useState('')
