@@ -16,7 +16,7 @@
     "concurrently": "^6.2.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "lightstreams-js-sdk": "git+https://git@github.com/lightstreams-network/lightstreams-js-sdk.git#master",
+    "ipfs": "^0.59.1",
     "mysql": "^2.18.1"
   }
 }
